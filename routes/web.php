@@ -44,9 +44,11 @@ Route::get('/mahasiswa', 'mahasiswaController@index');
 Route::get('/mahasiswa/new', 'mahasiswaController@create');
 Route::post('/mahasiswa/new', 'mahasiswaController@store');
 
-Route::get('/mahasiswa2', 'Mahasiswa2Controller@index');
-Route::get('/mahasiswa2/new', 'Mahasiswa2Controller@create');
-Route::post('/mahasiswa2/new', 'Mahasiswa2Controller@store');
-Route::get('/mahasiswa2/edit/{id}', 'Mahasiswa2Controller@edit');
-Route::post('/mahasiswa2/edit/{id}', 'Mahasiswa2Controller@update');
-Route::delete('/mahasiswa2/delete/{id}', 'Mahasiswa2Controller@destroy');
+Route::get('/mahasiswa2', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@index']);
+Route::get('/mahasiswa2/new', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@create']);
+Route::post('/mahasiswa2/new', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@store']);
+Route::get('/mahasiswa2/edit/{id}', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@edit']);
+Route::post('/mahasiswa2/edit/{id}', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@update']);
+Route::delete('/mahasiswa2/delete/{id}', ['middleware' => 'auth','uses' =>'Mahasiswa2Controller@destroy']);
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Prodi;
+use Illuminate\Support\Facades\Gate;
 
 class ProdiController extends Controller
 {
@@ -11,7 +12,7 @@ class ProdiController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function index()
     {
         //
@@ -27,7 +28,13 @@ class ProdiController extends Controller
     public function create()
     {
         //
+        if(Gate::allows('admin'))
+        {
         return view('prodi.create');
+        }
+        else{
+        return 'Akses Ditolak';
+        }
     }
 
     /**
@@ -49,8 +56,8 @@ class ProdiController extends Controller
         $prodi->nama = $request->nama;
 
         $prodi->save();
+        //
 
-        return redirect('prodi');   //
     }
 
     /**
@@ -73,7 +80,14 @@ class ProdiController extends Controller
     public function edit($id)
     {
         $prodi = Prodi::find($id);
-        return view('prodi.edit', compact('prodi'));//
+        //
+        if(Gate::allows('admin'))
+        {
+            return view('prodi.edit', compact('prodi'));
+        }
+        else{
+            return 'Akses Ditolak';
+        }
     }
 
     /**
@@ -97,7 +111,14 @@ class ProdiController extends Controller
 
         $prodi->save();
 
-        return redirect('/prodi');
+        //
+        if(Gate::allows('admin'))
+        {
+            return redirect('/prodi');
+        }
+        else{
+            return 'Akses Ditolak';
+        }
     }
 
     /**
@@ -112,6 +133,12 @@ class ProdiController extends Controller
         $prodi = Prodi::find($id);
         $prodi->delete();
 
-        return redirect('/prodi');
+        if(Gate::allows('admin'))
+        {
+            return redirect('/prodi');
+        }
+        else{
+            return 'Akses  Ditolak';
+        }
     }
 }

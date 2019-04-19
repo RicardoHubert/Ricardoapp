@@ -33,12 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        
-                        <li class="nav-item"><a class="nav-link" href="/datadosen">Data Dosen</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/prodi">Prodi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/mahasiswa">Mahasiswa Lama</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/mahasiswa2">Mahasiswa Baru</a></li>
-                    </ul>   
+
+                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -58,7 +54,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDrodatpdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

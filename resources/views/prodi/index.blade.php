@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('title', 'AdminLTE')
+
+@section('content-header')
+	<h1>Prodi</h1>
+@stop
 
 @section('content')
 
-<div class="container">
-	<div class="row justify-content.center">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header">Prodi</div>
-
-				<div class="card-body">
 					<a href="/prodi/new" class="btn btn-primary">Buat Prodi Baru</a>
 					<table class="table table-striped">
 						<tr>
@@ -34,9 +33,4 @@
 						@endforeach
 
 					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+@stop

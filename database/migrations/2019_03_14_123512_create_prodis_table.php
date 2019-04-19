@@ -19,13 +19,6 @@ class CreateProdisTable extends Migration
             $table->String('nama');
             $table->timestamps();
         });
-
-             Schema::create('prodis', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->String('kode');
-            $table->String('nama');
-            $table->timestamps();
-        });
         
 
     }

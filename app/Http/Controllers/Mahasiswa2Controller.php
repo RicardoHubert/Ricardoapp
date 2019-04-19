@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mahasiswa2;
 use App\Prodi;
+use Illuminate\Support\Facades\Gate;
 
 class Mahasiswa2Controller extends Controller
 {
@@ -28,8 +29,13 @@ class Mahasiswa2Controller extends Controller
     public function create()
     {
         $prodis = Prodi::all();
+        if(Gate::allows('admin'))
+        {
         return view('mahasiswa2.create', compact('prodis'));
-        //
+        }
+        else{
+            return('Akses Ditolak');
+        }
     }
 
     /**
@@ -78,7 +84,14 @@ class Mahasiswa2Controller extends Controller
     {
        $mahasiswa2 = Mahasiswa2::find($id);
        $prodis = Prodi::all();
-       return view ('mahasiswa2.edit', compact('mahasiswa2', 'prodis'));//
+       //
+       if(Gate::allows('admin')){
+        return view ('mahasiswa2.edit', compact('mahasiswa2', 'prodis'));
+       }
+       else{
+        return 'Akses Ditolak';
+       }
+   //
     }
 
     /**
@@ -114,9 +127,15 @@ class Mahasiswa2Controller extends Controller
      */
     public function destroy($id)
     {
+        if(Gate::allows('admin')){
         $mahasiswa2 = Mahasiswa2::find($id);
         $mahasiswa2->delete();
 
-        return redirect('/mahasiswa2'); //
+        return redirect('/mahasiswa2'); //            
+        }
+        else{
+            return 'Akses Ditolak';
+        }
+
     }
 }
