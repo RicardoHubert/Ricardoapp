@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-
 					<a href="/prodi/new" class="btn btn-primary">Buat Prodi Baru</a>
 					<table class="table table-striped">
 						<tr>

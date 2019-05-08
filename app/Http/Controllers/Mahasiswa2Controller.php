@@ -50,12 +50,21 @@ class Mahasiswa2Controller extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
-            'prodi_id' => 'required'
+            'prodi_id' => 'required',
+            'foto' => 'image|mimes:jpeg,jpg,png,svg'
             ]);
+
+        $tempat_upload = public_path('/foto');
+        $foto = $request->file('foto');
+        $ext = $foto->getClientOriginalExtension();
+        $filename = $request->nim . "." . $ext;
+        $foto->move($tempat_upload, $filename);
 
         $mahasiswa2->nim = $request->nim;
         $mahasiswa2->nama = $request->nama;
         $mahasiswa2->prodi_id = $request->prodi_id;
+        $mahasiswa2->foto = $filename;
+        $mahasiswa2->tgl_lahir = $request->tgl_lahir;
 
         $mahasiswa2->save();
 
